@@ -45,7 +45,7 @@ class Booking extends Component {
   }
 
   componentDidMount() {
-    this.getRoomListing(Math.floor(Math.random() * (99)) + 1000);
+    this.getRoomListing();
   }
 
   onGuestPickerFocus() {
@@ -81,14 +81,14 @@ class Booking extends Component {
     });
   }
 
-  getRoomListing(id) {
+  getRoomListing() {
+    let id = window.location.pathname;
     axios.get(`/booking/${id}`)
       .then(({ data }) => {
         const bookings = data.results.bookings;
         const listing = data.results.listing[0];
         const owner = data.results.owner[0];
         const reviews = data.results.reviews[0];
-
         this.setState({
           bookings,
           listing,
@@ -145,7 +145,8 @@ class Booking extends Component {
   }
 
   checkoutWithTripDetails(tripDetails) {
-    axios.post('/booking', tripDetails)
+    let id = window.location.pathname;
+    axios.post(`/booking${id}`, tripDetails)
       .then((response) => {
         console.log(response);
       })
