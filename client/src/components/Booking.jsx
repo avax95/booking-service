@@ -11,7 +11,7 @@ import GuestPicker from './booking-form/GuestPicker';
 import PricingQuote from './booking-form/pricing-quote/PricingQuote';
 
 const moment = extendMoment(Moment);
-
+ 
 const PRICE_PRESETS = {
   serviceFee: 3,
   multiple: 0.075,
@@ -27,6 +27,7 @@ class Booking extends Component {
       selectedEndDate: null,
       isFetchingPricingQuote: false,
       guestPickerFocus: false,
+      id: window.location.pathname,
       guestDetails: {
         adults: 1,
         children: 0,
@@ -82,8 +83,7 @@ class Booking extends Component {
   }
 
   getRoomListing() {
-    let id = window.location.pathname;
-    axios.get(`/booking/${id}`)
+    axios.get(`/booking/${this.state.id}`)
       .then(({ data }) => {
         const bookings = data.results.bookings;
         const listing = data.results.listing[0];
@@ -145,8 +145,7 @@ class Booking extends Component {
   }
 
   checkoutWithTripDetails(tripDetails) {
-    let id = window.location.pathname;
-    axios.post(`/booking${id}`, tripDetails)
+    axios.post(`/booking${this.state.id}`, tripDetails)
       .then((response) => {
         console.log(response);
       })
