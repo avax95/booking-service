@@ -1,29 +1,29 @@
-DROP DATABASE IF EXISTS booking_service;
-
-CREATE DATABASE booking_service;
-
-USE booking_service;
 
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BIGSERIAL NOT NULL,
   userName VARCHAR(100) NOT NULL,
+  creditCardNumber BIGINT,
+  billingAddress VARCHAR(600),
   PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS owners;
 
 CREATE TABLE owners (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BIGSERIAL NOT NULL,
   ownerName VARCHAR(100) NOT NULL,
+  creditCardNumber BIGINT,
+  billingAddress VARCHAR(600),
+  superHost BOOLEAN,
   PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS listings;
 
 CREATE TABLE listings (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BIGSERIAL NOT NULL,
   owner_id INT NOT NULL,
   maxGuests INT NOT NULL,
   price INT NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE listings (
 DROP TABLE IF EXISTS bookings;
 
 CREATE TABLE bookings (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BIGSERIAL NOT NULL,
   listing_id INT NOT NULL,
   user_id INT NOT NULL,
   startDate DATE NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE bookings (
 DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE reviews (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BIGSERIAL NOT NULL,
   rating INT NOT NULL,
   listing_id INT NOT NULL,
   PRIMARY KEY (id)

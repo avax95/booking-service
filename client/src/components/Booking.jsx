@@ -11,7 +11,7 @@ import GuestPicker from './booking-form/GuestPicker';
 import PricingQuote from './booking-form/pricing-quote/PricingQuote';
 
 const moment = extendMoment(Moment);
-
+ 
 const PRICE_PRESETS = {
   serviceFee: 3,
   multiple: 0.075,
@@ -27,6 +27,7 @@ class Booking extends Component {
       selectedEndDate: null,
       isFetchingPricingQuote: false,
       guestPickerFocus: false,
+      id: window.location.pathname,
       guestDetails: {
         adults: 1,
         children: 0,
@@ -45,7 +46,7 @@ class Booking extends Component {
   }
 
   componentDidMount() {
-    this.getRoomListing(Math.floor(Math.random() * (99)) + 1000);
+    this.getRoomListing();
   }
 
   onGuestPickerFocus() {
@@ -81,14 +82,13 @@ class Booking extends Component {
     });
   }
 
-  getRoomListing(id) {
-    axios.get(`/booking/${id}`)
+  getRoomListing() {
+    axios.get(`/booking/${this.state.id}`)
       .then(({ data }) => {
         const bookings = data.results.bookings;
         const listing = data.results.listing[0];
         const owner = data.results.owner[0];
         const reviews = data.results.reviews[0];
-
         this.setState({
           bookings,
           listing,
@@ -145,7 +145,7 @@ class Booking extends Component {
   }
 
   checkoutWithTripDetails(tripDetails) {
-    axios.post('/booking', tripDetails)
+    axios.post(`/booking${this.state.id}`, tripDetails)
       .then((response) => {
         console.log(response);
       })

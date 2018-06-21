@@ -98,6 +98,7 @@ const queryAllDbTablesByRoomId = (id, callback) => {
     }
   };
 
+
   queryListingInfoByRoomId(idWrap, 'listing', trackQueryHelper);
   queryOwnerInfoByRoomId(idWrap, 'owner', trackQueryHelper);
   queryListingReviewsByRoomId(idWrap, 'reviews', trackQueryHelper);
