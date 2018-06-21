@@ -1,13 +1,8 @@
--- DROP DATABASE IF EXISTS booking;
-
--- CREATE DATABASE booking;
-
--- USE booking;
 
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   userName VARCHAR(100) NOT NULL,
   creditCardNumber BIGINT,
   billingAddress VARCHAR(600),
@@ -17,7 +12,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS owners;
 
 CREATE TABLE owners (
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   ownerName VARCHAR(100) NOT NULL,
   creditCardNumber BIGINT,
   billingAddress VARCHAR(600),
@@ -28,7 +23,7 @@ CREATE TABLE owners (
 DROP TABLE IF EXISTS listings;
 
 CREATE TABLE listings (
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   owner_id INT NOT NULL,
   maxGuests INT NOT NULL,
   price INT NOT NULL,
@@ -41,7 +36,7 @@ CREATE TABLE listings (
 DROP TABLE IF EXISTS bookings;
 
 CREATE TABLE bookings (
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   listing_id INT NOT NULL,
   user_id INT NOT NULL,
   startDate DATE NOT NULL,
@@ -52,7 +47,7 @@ CREATE TABLE bookings (
 DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE reviews (
-  id BIGINT NOT NULL,
+  id BIGSERIAL NOT NULL,
   rating INT NOT NULL,
   listing_id INT NOT NULL,
   PRIMARY KEY (id)
