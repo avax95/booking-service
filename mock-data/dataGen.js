@@ -119,7 +119,6 @@ const generateBookings = (writer) => {
   let i = 30000000;
   let id = 1;
   const generate = () => {
-    //Generate date
     Date.prototype.addDays = function(days) {
       var dat = new Date(this.valueOf());
       dat.setDate(dat.getDate() + days);
@@ -161,7 +160,7 @@ const generateBookings = (writer) => {
 }
 
 const generateReviews = (writer) => {
-  let i = 20000000;
+  let i = 30000000;
   let id = 10000001;
   const generate = () => {
     let dataB = ``; 
