@@ -7,7 +7,11 @@ const fileBookings = fs.createWriteStream('./DatabaseData/bookingsTable.csv');
 const fileReviews30 = fs.createWriteStream('./DatabaseData/reviewsTable30M.csv');
 
 
-
+const headerUsers = `'id','userName','creditCardNumber', 'billingAddress' \n`;
+const headerOwners = `'id','ownerName','creditCardNumber', 'billingAddress', superHost \n`;
+const headerListings = `'id','ownerID', 'maxGuests', 'price', 'minStay', 'cleaningFee', 'areaTax' \n`;
+const headerBookings = `'id', 'listingID', 'userID', 'startDate', 'endDate' \n `;
+const headerReviews = `'id', 'rating', 'listingID' \n`;
 const generateUsers = (writer) => {
   let i = 10000000;
   let id = 1;
@@ -23,8 +27,9 @@ const generateUsers = (writer) => {
   const write = () => {
     let ok = true;
     do {
-      if (i === 0) {
+      if (i === 10000000) {
         let data = generate();
+        writer.write(headerUsers);
         writer.write(data);
         
       } else {
@@ -58,9 +63,10 @@ const generateOwners = (writer) => {
   const write = () => {
     let ok = true;
     do {
-      if (i === 0) {
+      if (i === 10000000) {
         let data = generate();
-        writer.write(data);
+         writer.write(headerOwners);     
+         writer.write(data);
         
       } else {
         let data = generate();
@@ -95,8 +101,9 @@ const generateListings = (writer) => {
   const write = () => {
     let ok = true;
     do {
-      if (i === 0) {
+      if (i === 10000000) {
         let data = generate();
+        writer.write(headerListings);
         writer.write(data);
         
       } else {
@@ -132,8 +139,8 @@ const generateBookings = (writer) => {
     const startDate = dat.addDays(daysAdd);
     const listingID = faker.random.number({min:1, max:10000000});
     const userID = faker.random.number({min:1, max:10000000});
-    const start = JSON.stringify(startDate).slice(0,11);
-    const end = JSON.stringify(startDate.addDays(stay)).slice(0,11);;
+    const start = JSON.stringify(startDate).slice(1,11);
+    const end = JSON.stringify(startDate.addDays(stay)).slice(1,11);
     dataB+= `${id},${listingID},${userID},${start},${end} \n`;
     id++;
 
@@ -142,8 +149,9 @@ const generateBookings = (writer) => {
   const write = () => {
     let ok = true;
     do {
-      if (i === 0) {
+      if (i === 30000000) {
         let data = generate();
+        writer.write(headerBookings);
         writer.write(data);
         
       } else {
@@ -161,7 +169,7 @@ const generateBookings = (writer) => {
 
 const generateReviews = (writer) => {
   let i = 30000000;
-  let id = 10000001;
+  let id = 1;
   const generate = () => {
     let dataB = ``; 
     const rating = faker.random.number({min:0, max:5});
@@ -174,8 +182,9 @@ const generateReviews = (writer) => {
   const write = () => {
     let ok = true;
     do {
-      if (i === 0) {
+      if (i === 30000000) {
         let data = generate();
+        writer.write(headerReviews);
         writer.write(data);
         
       } else {
