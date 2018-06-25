@@ -20,7 +20,7 @@ const generateUsers = (writer) => {
 		const name = faker.name.findName();
 		const creditNumber = faker.random.number(28884848400783123);
 		const address = faker.address.streetAddress();
-		dataB+= `${id},${name},${creditNumber},${address} \n`;
+		dataB += `${id},${name},${creditNumber},${address} \n`;
 		id++;
 	  return dataB;
 	}	
@@ -54,10 +54,8 @@ const generateOwners = (writer) => {
     const creditNumber = faker.random.number(28884848400783123);
     const address = faker.address.streetAddress();
     const superhost = faker.random.boolean();
-    dataB+= `${id},${name},${creditNumber},${address},${superhost} \n`;
-
+    dataB += `${id},${name},${creditNumber},${address},${superhost} \n`;
     id++;
-
     return dataB;
   } 
   const write = () => {
@@ -92,10 +90,8 @@ const generateListings = (writer) => {
     const minStay = faker.random.number({min:1, max:7});
     const cleaningFee = faker.random.number(350);
     const areaTax = faker.random.number(150);
-    dataB+= `${id},${ownerID},${maxGuests},${price},${minStay},${cleaningFee},${areaTax}  \n`;
-
+    dataB += `${id},${ownerID},${maxGuests},${price},${minStay},${cleaningFee},${areaTax}  \n`;
     id++;
-
     return dataB;
   } 
   const write = () => {
@@ -141,9 +137,8 @@ const generateBookings = (writer) => {
     const userID = faker.random.number({min:1, max:10000000});
     const start = JSON.stringify(startDate).slice(1,11);
     const end = JSON.stringify(startDate.addDays(stay)).slice(1,11);
-    dataB+= `${id},${listingID},${userID},${start},${end} \n`;
+    dataB += `${id},${listingID},${userID},${start},${end} \n`;
     id++;
-
     return dataB;
   } 
   const write = () => {
@@ -174,9 +169,8 @@ const generateReviews = (writer) => {
     let dataB = ``; 
     const rating = faker.random.number({min:0, max:5});
     const listingID = faker.random.number({min:1, max:10000000});
-    dataB+= `${id},${rating},${listingID} \n`;
+    dataB += `${id},${rating},${listingID} \n`;
     id++;
-
     return dataB;
   } 
   const write = () => {
@@ -207,5 +201,3 @@ console.time('10M-elements');
 // generateReviews(fileReviews30);
 
 console.timeEnd('10M-elements');
-
-// file.end();

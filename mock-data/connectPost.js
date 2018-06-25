@@ -12,7 +12,11 @@ const queryHandler = function(q) {
 			console.log('Error connecting to postgres:', err)
 		}
 		client.query(q, (err, data) => {
-			err ? console.log(err) : console.log('query success');
+			if(err) {
+				console.log('Error performing query postgress:', err)
+			} else {
+       	console.log('query success');
+			}
 		});
 	});
 }
