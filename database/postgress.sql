@@ -1,5 +1,4 @@
-
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id BIGSERIAL NOT NULL,
@@ -9,7 +8,7 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS owners;
+-- DROP TABLE IF EXISTS owners;
 
 CREATE TABLE owners (
   id BIGSERIAL NOT NULL,
@@ -20,7 +19,7 @@ CREATE TABLE owners (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS listings;
+-- DROP TABLE IF EXISTS listings;
 
 CREATE TABLE listings (
   id BIGSERIAL NOT NULL,
@@ -33,7 +32,7 @@ CREATE TABLE listings (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS bookings;
+-- DROP TABLE IF EXISTS bookings;
 
 CREATE TABLE bookings (
   id BIGSERIAL NOT NULL,
@@ -44,7 +43,7 @@ CREATE TABLE bookings (
   PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS reviews;
+-- DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE reviews (
   id BIGSERIAL NOT NULL,
